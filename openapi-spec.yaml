@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: open api spec driven dev
+  description: bal bla.
+  version: 1.0.0
+  contact:
+    name: Rida kaddir
+    url: https://www.linkedin.com/in/ridakaddir/
+    email: ridakaddir@gmail.com
+servers:
+  - url: 'http://localhost:8080'
+    description: dev
+paths:
+  /prospect:
+    post:
+      summary: create a new prospect.
+      operationId: createProspect
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/prospect'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/prospect'
+components:
+  schemas:
+    prospect:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - address
+        - city
+        - email
+        - mobileNumber
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        address:
+          type: string
+        city:
+          type: string
+        email:
+          type: string
+          format: email
+        mobileNumber:
+          type: string
+          pattern: '^(\+212|0)([ \-_\/]*)(\d[ \-_\/]*){9}$'
+
